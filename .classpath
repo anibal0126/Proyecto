@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="dist/lib/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="dist/OrgPLUS.jar"/>
+	<classpathentry kind="lib" path="librerias/poi-4.1.2.jar"/>
+	<classpathentry kind="lib" path="librerias/poi-ooxml-4.1.2.jar"/>
+	<classpathentry kind="lib" path="librerias/poi-ooxml-schemas-4.1.2.jar"/>
+	<classpathentry kind="lib" path="librerias/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="librerias/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
