@@ -2,96 +2,34 @@ package frm;
 
 import java.io.BufferedReader;
 
-import java.io.File;
 import java.io.FileOutputStream;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import orgplus.OrgPLUS;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class plantilla extends javax.swing.JFrame {
-
-	public void exportar() throws IOException {
-
-		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de excel", "xls");
-		chooser.setFileFilter(filter);
-		chooser.setDialogTitle("Guardar archivo");
-		chooser.setAcceptAllFileFilterUsed(false);
-		if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-			String ruta = chooser.getSelectedFile().toString().concat(".xls");
-			try {
-				File archivoXLS = new File(ruta);
-				if (archivoXLS.exists()) {
-					archivoXLS.delete();
-				}
-				archivoXLS.createNewFile();
-
-				HSSFWorkbook libro = new HSSFWorkbook();
-
-				FileOutputStream archivo = new FileOutputStream(archivoXLS);
-
-				HSSFSheet hoja = libro.createSheet("Mi hoja de trabajo 1");
-
-				((org.apache.poi.ss.usermodel.Sheet) hoja).setDisplayGridlines(false);
-
-				for (int f = 0; f < jTable3.getRowCount(); f++) {
-					Row fila = (hoja).createRow(f);
-					for (int c = 0; c < jTable3.getColumnCount(); c++) {
-						Cell celda = fila.createCell(c);
-						if (f == 0) {
-							celda.setCellValue(jTable3.getColumnName(c));
-						}
-					}
-				}
-				int filaInicio = 1;
-				for (int f = 0; f < jTable3.getRowCount(); f++) {
-					Row fila = ((org.apache.poi.ss.usermodel.Sheet) hoja).createRow(filaInicio);
-					filaInicio++;
-					for (int c = 0; c < jTable3.getColumnCount(); c++) {
-						Cell celda = fila.createCell(c);
-						if (jTable3.getValueAt(f, c) instanceof Double) {
-							celda.setCellValue(Double.parseDouble(jTable3.getValueAt(f, c).toString()));
-						} else if (jTable3.getValueAt(f, c) instanceof Float) {
-							celda.setCellValue(Float.parseFloat((String) jTable3.getValueAt(f, c)));
-						} else {
-							celda.setCellValue(String.valueOf(jTable3.getValueAt(f, c)));
-						}
-					}
-				}
-				libro.write(archivo);
-				archivo.close();
-				Desktop.getDesktop().open(archivoXLS);
-			} catch (IOException | NumberFormatException e) {
-				throw e;
-			}
-		}
-	}
 
 	// objeto de la clase OrgPLUS donde estan los metodos de ordenar por tallas
 	OrgPLUS plu = new OrgPLUS();
@@ -196,12 +134,36 @@ public class plantilla extends javax.swing.JFrame {
 		JButton btnGenerarExcel = new JButton("Generar Excel");
 		btnGenerarExcel.addActionListener(new ActionListener() {
 
-			private HSSFWorkbook libro;
-
 			public void actionPerformed(ActionEvent arg0) {
 
+				Workbook book = new HSSFWorkbook();
+
+				Sheet sheet = book.createSheet("Hola Java");
+
+				for (int i = 0; i < jTable3.getRowCount(); i++) {
+					Row row = sheet.createRow(i);
+					for (int j = 0; j < jTable3.getColumnCount(); j++) {
+						Cell celda = row.createCell(j);
+						if (jTable3.getValueAt(i, j) == null) {
+							celda.setCellValue(String.valueOf(" "));
+						} else if (jTable3.getValueAt(i, j) instanceof Double) {
+							celda.setCellValue(Double.parseDouble(jTable3.getValueAt(i, j).toString()));
+						} else if (jTable3.getValueAt(i, j) instanceof Float) {
+							celda.setCellValue(Float.parseFloat((String) jTable3.getValueAt(i, j)));
+						} else {
+							celda.setCellValue(String.valueOf(jTable3.getValueAt(i, j)));
+						}
+					}
+
+				}
+
 				try {
-					exportar();
+					FileOutputStream file = new FileOutputStream("Excel.xls");
+					book.write(file);
+					file.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

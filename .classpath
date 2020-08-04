@@ -4,10 +4,12 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="dist/lib/AbsoluteLayout.jar"/>
 	<classpathentry kind="lib" path="dist/OrgPLUS.jar"/>
-	<classpathentry kind="lib" path="librerias/poi-4.1.2.jar"/>
-	<classpathentry kind="lib" path="librerias/poi-ooxml-4.1.2.jar"/>
-	<classpathentry kind="lib" path="librerias/poi-ooxml-schemas-4.1.2.jar"/>
 	<classpathentry kind="lib" path="librerias/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="librerias/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/OLIMPI35/Downloads/poi-4.1.2/librerias/poi-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/OLIMPI35/Downloads/commons-math3-3.6.1/commons-math3-3.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/OLIMPI35/Downloads/poi-4.1.2/librerias/poi-ooxml-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/OLIMPI35/Downloads/poi-4.1.2/librerias/poi-ooxml-schemas-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/OLIMPI35/Downloads/poi-4.1.2/lib/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/OLIMPI35/Downloads/poi-4.1.2/ooxml-lib/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
