@@ -157,7 +157,57 @@ public class plantilla extends javax.swing.JFrame {
 
 				}
 
+				Sheet sheet1 = book.createSheet("Hola Java1");
+
+				for (int i = 0; i < jTable3.getRowCount(); i++) {
+					Row row1 = sheet1.createRow(i);
+					for (int j = 0; j < jTable3.getColumnCount(); j++) {
+
+						Cell celda1 = row1.createCell(j);
+
+						if (j == 0) {
+
+							celda1.setCellValue(String.valueOf(jTable3.getValueAt(i, j)));
+						}
+
+						if (j == 1) {
+
+							celda1.setCellValue("CO11");
+						}
+
+						if (j == 2) {
+
+							celda1.setCellValue(String.valueOf(jTable3.getValueAt(i, 28)));
+						}
+						if (j == 3) {
+
+							celda1.setCellValue(String.valueOf(jTable3.getValueAt(i, jTable3.getColumnCount() - 1)));
+						}
+
+						if (j == 7) {
+
+							celda1.setCellValue("01");
+						}
+
+						if (j == 8) {
+
+							celda1.setCellValue("AP");
+						}
+						if (j == 9) {
+
+							celda1.setCellValue("20140101");
+						}
+						if (j == 11) {
+
+							celda1.setCellValue("104");
+						}
+
+					}
+
+				}
+
 				try {
+
 					FileOutputStream file = new FileOutputStream("Excel.xls");
 					book.write(file);
 					file.close();
@@ -168,6 +218,9 @@ public class plantilla extends javax.swing.JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
+				JOptionPane.showMessageDialog(null, "Creado con exito");
+
 			}
 		});
 
